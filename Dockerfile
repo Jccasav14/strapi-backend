@@ -1,25 +1,26 @@
-# Imagen base
+# Usa una imagen base de Node.js
 FROM node:18-alpine
 
-# Crear directorio de trabajo
+# Crea y entra al directorio de trabajo
 WORKDIR /app
 
-# Copiar dependencias
+# Copia package.json e instala dependencias
 COPY package*.json ./
+RUN npm install
 
-# Instalar dependencias
-RUN npm install --production
-
-# Copiar todo el proyecto
+# Copia todo el código fuente al contenedor
 COPY . .
+
+# ⚙️ Compila el panel de administración de Strapi
+RUN npm run build
 
 # Variables de entorno
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=1337
 
-# Exponer el puerto
+# Expone el puerto
 EXPOSE 1337
 
-# Comando de inicio
-CMD ["npm", "run", "start"]
+# Inicia Strapi
+CMD ["npm", "start"]
