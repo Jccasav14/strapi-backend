@@ -1,3 +1,4 @@
+
 export default [
   'strapi::logger',
   'strapi::errors',

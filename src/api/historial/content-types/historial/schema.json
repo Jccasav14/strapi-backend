@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "historials",
+  "info": {
+    "singularName": "historial",
+    "pluralName": "historials",
+    "displayName": "historial"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "historials"
+    },
+    "descripcion": {
+      "type": "string"
+    }
+  }
+}
