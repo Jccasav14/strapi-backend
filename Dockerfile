@@ -1,17 +1,25 @@
-FROM node:18
+# Imagen base
+FROM node:18-alpine
 
+# Crear directorio de trabajo
 WORKDIR /app
 
+# Copiar dependencias
 COPY package*.json ./
 
-RUN npm install
+# Instalar dependencias
+RUN npm install --production
 
+# Copiar todo el proyecto
 COPY . .
 
-ENV NODE_ENV=development
+# Variables de entorno
+ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=1337
 
+# Exponer el puerto
 EXPOSE 1337
 
-CMD ["npm", "run", "develop"]
+# Comando de inicio
+CMD ["npm", "run", "start"]
